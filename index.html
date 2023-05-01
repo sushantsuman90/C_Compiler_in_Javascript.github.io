@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./lex.js"> </script>
+    <script type="text/javascript" src="./parse.js"> </script>
+    <script type="text/javascript" src="./traverser.js"> </script>
+    <script type="text/javascript" src="./second.js"> </script>
+    <script type="text/javascript" src="./third.js"> </script>
+    <script>
+
+function operatorChecker(){
+            console.log("identifier function called")
+            var input = document.getElementById("input").value;
+
+          var result1 = operator(input);
+
+        document.getElementById("output").innerText = result1;
+
+        
+
+          return false;
+        }
+
+     function identifier(){
+            console.log("identifier function called")
+            var input = document.getElementById("input").value;
+
+          var result1 = myFunction(input);
+
+        document.getElementById("output").innerText = result1;
+
+        
+
+          return false;
+        }
+
+        function onSubmit() {
+          // Get the input value
+          var input = document.getElementById("input").value;
+    
+          // Call the lex function and get the result
+          var result = lex(input);
+          var outputString = "";
+           for (var i = 0; i < result.length; i++) {
+           outputString += JSON.stringify(result[i]) + "\n";
+  }
+  document.getElementById("output").innerText = outputString;
+          return result;
+        }
+
+        function parseTree(){
+            console.log("parse function called")
+            var input = document.getElementById("input").value;
+    
+          // Call the lex function and get the result
+          var result = lex(input);
+
+        // Parse the result and get the parse tree
+        var parseTree = parser(result);
+        document.getElementById("output").innerText = parseTree.toString();
+
+        console.log(parseTree);
+
+          return false;
+        }
+
+      
+      </script>
+
+    <title>Document</title>
+</head>
+<body style="background-color:cadetblue;">
+  <div class="container text-center my-3" style="height :50px; margin-top: 100vw; font-weight: bolder;"><h1> Simple C Compiler - lab Project</h1></div>
+    <form class="container text-center my-3" >
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Input Expression</label>
+        <textarea  class="form-control" id="input" rows="3"></textarea>
+      </div>
+    
+</form>
+<div class="container text-center" style="display:list-item">
+  <button class="btn btn-dark" onClick="return operatorChecker()">Operator checker</button> 
+  <button class="btn btn-dark" onClick="return identifier()">identifier checker</button> 
+<button class="btn btn-dark" onClick="return onSubmit()">Lexical Analyser</button>
+<button class="btn btn-dark" onClick="return parseTree()">Parser</button> 
+<!-- <button onClick="return traverse()">traverse</button>  -->
+</div>
+
+<div id="output" class="container text-center my-5">
+  
+</div>
+
+</div>
+
+<div class="container text-center" style="margin-left: 8%;bottom: 0; position: absolute; align-items:center;"><p><h4>Made By:-<br> Sushant Suman <br> Anup Kumar Dutta</h4></p></div>
+
+</body>
+</html>
